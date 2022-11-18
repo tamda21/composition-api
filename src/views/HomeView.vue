@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <p ref='p' >My name is {{name}} .Iam {{age}}</p>
-    <button @click="addAge">show hello</button>
+    <p  >My name is {{name}} .Iam {{age}}</p>
+    <input type="text"  v-model="name" />
+    <button @click="updateValue">Update</button>
   </div>
 </template>
 
@@ -12,15 +13,13 @@ import {ref} from 'vue'
 export default {
   name: 'HomeView',
   setup(){
-    let name ="abde"
-    let age =37
-    const p = ref(null)
-    const addAge =()=>{
-      console.log(p,p.value)
-      p.value.classList.add('test')
-      p.value.textContent="hello joker"
+    const name =ref("abde")
+    const age =ref(37)
+    const updateValue =()=>{
+    name.value="loujaine"
+    age.value=1
     }
-    return{name,age,addAge,p}
+    return{name,age,updateValue,age,name}
   }
 }
 </script>
