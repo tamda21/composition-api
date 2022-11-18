@@ -1,25 +1,28 @@
 <template>
   <div class="home">
-    <p  >My name is {{name}} .Iam {{age}}</p>
-    <input type="text"  v-model="name" />
-    <button @click="updateValue">Update</button>
+    <label>Search Fruit</label>
+    <input type="text"  v-model="search" />
+    <div v-for="fruit in filterFruits" :key="fruit">
+      {{fruit}}
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import {ref} from 'vue'
+import {ref,computed} from 'vue'
 export default {
   name: 'HomeView',
   setup(){
-    const name =ref("abde")
-    const age =ref(37)
-    const updateValue =()=>{
-    name.value="loujaine"
-    age.value=1
-    }
-    return{name,age,updateValue,age,name}
+    const search =ref('')
+    const fruits = ref(["banana","orange","apple", "strawberry", "mongo"])
+    const filterFruits =computed(()=>{
+      return fruits.value.filter((fruit)=>{
+        return fruit.includes(search.value)
+      })
+    })
+    return {search,fruits,filterFruits}
   }
 }
 </script>
